@@ -1,0 +1,63 @@
+// app.js
+const express = require('express');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const path = require('path');
+require('dotenv').config();
+
+const app = express();
+
+// Middleware
+app.set('view engine', 'ejs');
+app.set('view cache', false);
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+}));
+
+// Set EJS as view engine
+app.set('view engine', 'ejs');
+
+// Routes
+// app.get('/', (req, res) => {
+//   res.render('home');
+// });
+
+const publicRoutes = require('./routes/publicRoutes');
+app.use('/', publicRoutes);
+
+const adminRoutes = require('./routes/adminRoutes');
+app.use('/admin', adminRoutes);
+
+const videoRoutes = require('./routes/videoRoutes');
+app.use('/admin', videoRoutes);
+
+// Homepage Route
+app.get('/', async (req, res) => {
+    try {
+      const [infoResult, articlesResult, videosResult] = await Promise.all([
+        pool.query('SELECT * FROM ministry_info ORDER BY id DESC LIMIT 1'),
+        pool.query('SELECT * FROM articles ORDER BY created_at DESC LIMIT 3'),
+        pool.query('SELECT * FROM videos4 ORDER BY created_at DESC LIMIT 3'),
+      ]);
+  
+      const info = infoResult.rows[0];
+      const articles = articlesResult.rows;
+      const videos = videosResult.rows;
+  
+      res.render('home', { info, articles, videos });
+  
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server Error');
+    }
+  });
+
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
