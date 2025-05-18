@@ -25,3 +25,18 @@ exports.logout = (req, res) => {
   req.session.destroy();
   res.redirect('/admin/login');
 };
+
+exports.dashboard = async (req, res) => {
+  if (!req.session.admin) return res.redirect('/admin/login');
+
+  try {
+    const infoResult = await pool.query('SELECT * FROM ministry_info ORDER BY id DESC LIMIT 1');
+    const info = infoResult.rows[0];
+
+    console.log('info:', info);
+    res.render('admin/dashboard', { info });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+};

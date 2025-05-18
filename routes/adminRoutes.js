@@ -14,9 +14,9 @@ router.get('/logout', adminController.logout);
 
 
 // Admin dashboard
-router.get('/dashboard', (req, res) => {
-  res.render('admin/dashboard');
-});
+// router.get('/dashboard', (req, res) => {
+//   res.render('admin/dashboard');
+// });
 
 // Ministry Info routes
 router.get('/ministry', ministryController.showForm);

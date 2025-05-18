@@ -30,3 +30,5 @@ exports.deleteVideo = async (req, res) => {
   await pool.query('DELETE FROM videos3 WHERE id = $1', [id]);
   res.redirect('/admin/videos');
 };
+
+

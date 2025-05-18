@@ -1,3 +1,5 @@
+/* style.css - clean, modern, responsive admin styling */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 body {
@@ -15,8 +17,7 @@ body {
 
 h2 {
     font-weight: 600;
-    color: #bfa046;
-    /* gold */
+    color: #004080;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -64,10 +65,8 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 textarea:focus {
     outline: none;
-    border-color: #bfa046;
-    /* gold */
-    background-color: #fff9e6;
-    /* light gold background */
+    border-color: #0066cc;
+    background-color: #eef6ff;
 }
 
 /* Textarea specific height */
@@ -77,8 +76,7 @@ textarea {
 
 /* Buttons */
 button {
-    background-color: #bfa046;
-    /* gold */
+    background-color: #0066cc;
     color: #fff;
     font-weight: 600;
     padding: 12px 24px;
@@ -91,8 +89,7 @@ button {
 }
 
 button:hover {
-    background-color: #a38833;
-    /* darker gold */
+    background-color: #004a99;
 }
 
 /* Article cards container */
@@ -111,8 +108,7 @@ button:hover {
 /* Article title */
 .article-card h3 {
     margin-top: 0;
-    color: #4d3b00;
-    /* dark gold/brown */
+    color: #333;
 }
 
 /* Article image styling */
@@ -144,8 +140,7 @@ button:hover {
 .article-buttons a,
 .article-buttons form button {
     display: inline-block;
-    background-color: #bfa046;
-    /* gold */
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 8px 14px;
@@ -161,8 +156,7 @@ button:hover {
 /* Hover effect for buttons and links */
 .article-buttons a:hover,
 .article-buttons form button:hover {
-    background-color: #a38833;
-    /* darker gold */
+    background-color: #0056b3;
 }
 
 /* Delete button specifically */
@@ -182,7 +176,6 @@ button:hover {
     padding: 0;
 }
 
-/* Video card styling */
 .video-card {
     border: 1px solid #ddd;
     padding: 15px;
@@ -221,8 +214,7 @@ button:hover {
 
 .video-buttons a,
 .video-buttons form button {
-    background-color: #bfa046;
-    /* gold */
+    background-color: #007BFF;
     color: white;
     padding: 7px 12px;
     text-decoration: none;
@@ -230,18 +222,119 @@ button:hover {
     border-radius: 5px;
     cursor: pointer;
     font-weight: 600;
+    
 }
+
 
 .video-buttons a:hover,
 .video-buttons form button:hover {
-    background-color: #a38833;
-    /* darker gold */
+    background-color: #0056b3;
+}
+
+/* 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+}
+
+.header {
+    text-align: center;
+    background: #004080;
+    color: #fff;
+    padding: 20px;
+}
+
+.ministry-logo {
+    max-height: 100px;
+}
+
+.ministry-title {
+    margin: 10px 0 0;
+}
+
+.about-section,
+.content-section {
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.about-section h2,
+.content-section h2 {
+    color: #004080;
+    margin-top: 0;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    flex: 1 1 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.read-more,
+.view-all {
+    display: inline-block;
+    margin-top: 10px;
+    color: #004080;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover,
+.view-all:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    background: #004080;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+} */
+
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
 }
 
 /* Header */
 .header {
-    background-color: #4d3b00;
-    /* dark gold/brown */
+    background-color: #003366;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -283,6 +376,7 @@ nav a:hover {
 /* Section Styling */
 .section {
     max-width: 1000px;
+    /* margin: auto; */
     padding: 2rem 1rem;
     background-color: #fff;
     margin-top: 1.5rem;
@@ -297,6 +391,7 @@ nav a:hover {
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 1.5rem;
     margin-top: 1rem;
+    /* width: 80%;   */
 }
 
 .card {
@@ -327,24 +422,20 @@ nav a:hover {
 
 .card h3 {
     margin-top: 0;
-    color: #4d3b00;
-    /* dark gold */
+    color: #003366;
 }
 
 .login-button {
     padding: 6px 12px;
-    background-color: #bfa046;
-    /* gold */
+    background-color: #007bff;
     color: white;
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
-    transition: background-color 0.3s ease;
 }
 
 .login-button:hover {
-    background-color: #a38833;
-    /* darker gold */
+    background-color: #0056b3;
 }
 
 /* Responsive Design */
@@ -354,6 +445,7 @@ nav a:hover {
     }
 }
 
+/* Responsive */
 @media (max-width: 600px) {
     .article-card {
         padding: 15px;

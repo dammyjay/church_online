@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title><%= info?.name || 'Ministry Home' %></title>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/x-icon" href="/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -15,16 +16,20 @@
       <% } %>
       <h1><%= info?.name || 'Our Ministry' %></h1>
     </div>
+    
     <nav>
-      <a href="/">Home</a>
-      <a href="/admin/articles">Articles</a>
-      <a href="/admin/videos">Videos</a>
-      <a href="/admin/ministry">About</a>
+      <a href="#mission-vision">Home</a>
+      <a href="#articles">Articles</a>
+      <a href="#videos">Videos</a>
+      <a href="#mission-vision">About</a> <!-- Assuming About refers to Mission & Vision -->
+      <a href="/admin/login" class="login-button">Login</a> <!-- Login remains a page link -->
     </nav>
+    
+    
   </header>
 
   <!-- Mission & Vision -->
-  <section class="section mission-vision">
+  <section id="mission-vision" class="section mission-vision">
     <h2>Our Mission</h2>
     <p><%= info?.mission || 'Our mission goes here...' %></p>
 
@@ -33,7 +38,7 @@
   </section>
 
   <!-- Articles -->
-  <section class="section">
+  <section id="articles" class="section">
     <h2>Latest Articles</h2>
     <div class="card-grid">
       <% articles.forEach(article => { %>
@@ -50,7 +55,7 @@
   </section>
 
   <!-- Videos -->
- <section class="section">
+  <section id="videos" class="section">
   <h2>Recent Videos</h2>
   <div class="card-grid">
     <% videos.forEach(video => { %>

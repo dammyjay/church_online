@@ -30,3 +30,16 @@ exports.saveInfo = async (req, res) => {
 
   res.redirect('/admin/ministry');
 };
+
+exports.showForm = async (req, res) => {
+  try {
+    // Get latest ministry info
+    const result = await pool.query('SELECT * FROM ministry_info ORDER BY id DESC LIMIT 1');
+    const info = result.rows[0] || {};
+
+    res.render('admin/ministry', { info });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+};

@@ -54,3 +54,19 @@ exports.showEditForm = async (req, res) => {
     res.redirect('/admin/articles');
   };
   
+
+  exports.showArticles = async (req, res) => {
+    try {
+      const infoResult = await pool.query('SELECT * FROM ministry_info ORDER BY id DESC LIMIT 1');
+      const info = infoResult.rows[0] || {};
+      
+      const articlesResult = await pool.query('SELECT * FROM articles ORDER BY created_at DESC');
+      const articles = articlesResult.rows;
+  
+      res.render('admin/articles', { info, articles });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server Error');
+    }
+  };
+  

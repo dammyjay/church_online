@@ -35,6 +35,12 @@ app.use('/admin', adminRoutes);
 const videoRoutes = require('./routes/videoRoutes');
 app.use('/admin', videoRoutes);
 
+// // Example in your routes file
+// router.get('/login', (req, res) => {
+//   res.render('admin/login'); // note: include 'admin/' because login.ejs is inside admin folder
+// });
+
+
 // Homepage Route
 app.get('/', async (req, res) => {
     try {
