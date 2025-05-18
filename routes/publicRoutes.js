@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../models/db');
 
-router.get('/videos', videoController.showVideos);
+// router.get('/videos', videoController.showVideos);
 
 router.get('/', async (req, res) => {
   try {
