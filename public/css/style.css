@@ -242,6 +242,9 @@ button:hover {
 .header {
     background-color: #4d3b00;
     /* dark gold/brown */
+    /* background-image: url(banner.jpg);  
+        background-size: auto;
+        background-repeat: no-repeat; */
     color: white;
     padding: 1rem;
     text-align: center;
@@ -267,6 +270,7 @@ button:hover {
 
 nav {
     margin-top: 1rem;
+    /* width: 30%; */
 }
 
 nav a {
@@ -364,4 +368,8 @@ nav a:hover {
         padding: 6px 10px;
         font-size: 0.85rem;
     }
+
+        nav {
+            margin-top: 1rem;
+            width: 30%;   }
 }

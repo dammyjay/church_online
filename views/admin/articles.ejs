@@ -13,7 +13,7 @@
       <% if (info.logo_url) { %>
         <img src="<%= info.logo_url %>" alt="Logo" />
       <% } %>
-      <h1><%= info.name || 'C&S Church Online' %></h1>
+      <p><%= info?.name || 'C&S Church Online' %></p>
     </div>
     <nav>
       <a href="/">Home</a>
