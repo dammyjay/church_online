@@ -31,5 +31,18 @@ router.post('/articles/edit/:id', upload.single('image'), articleController.upda
 router.post('/articles/delete/:id', articleController.deleteArticle);
 
 
+// Temporary route to add `created_at` column
+router.get('/fix-created-at', async (req, res) => {
+    try {
+      await pool.query(`
+        ALTER TABLE articles
+        ADD COLUMN IF NOT EXISTS created_at4 TIMESTAMPTZ DEFAULT NOW();
+      `);
+      res.send('✅ created_at column added successfully!');
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('❌ Failed to add column.');
+    }
+  });
 
 module.exports = router;

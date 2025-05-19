@@ -45,12 +45,16 @@
         <div class="card">
           <h3><%= article.title %></h3>
           <% if (article.image_url) { %>
-            <img src="<%= article.image_url %>" alt="Article Image">
+            <img src="<%= article.image_url %>" alt="Article Image" style="max-width: 100%; height: auto; object-fit: cover; border-radius: 8px;" >
           <% } %>
           <p><%= article.content.substring(0, 100) %>...</p>
-          <small><%= new Date(article.created_at).toLocaleDateString() %></small>
+          <!-- <small><%= new Date(article.created_at2).toLocaleDateString() %></small> -->
+          <small><%= new Date(article.created_at3).toLocaleString() %></small>
         </div>
       <% }) %>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="/articles" class="login-button">View All Articles</a>
     </div>
   </section>
 
@@ -61,7 +65,7 @@
     <% videos.forEach(video => { %>
       <div class="card">
         <h3><%= video.title %></h3>
-        <small>Embed URL: <%= video.embed_url %></small>
+        <!-- <small>Embed URL: <%= video.embed_url %></small> -->
 
         <% if (video.embed_url) { %>
           <iframe 
@@ -76,9 +80,14 @@
           <p>Invalid or missing video URL</p>
         <% } %>
         <p><%= video.description %></p>
+        <!-- <small><%= new Date(video.created_at2).toLocaleDateString() %></small> -->
+        <small><%= new Date(video.created_at3).toLocaleString() %></small>
       </div>
+      
     <% }) %>
-    
+  </div>
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="/videos" class="login-button">View All Videos</a>
   </div>
 </section>
 

@@ -46,8 +46,8 @@ app.get('/', async (req, res) => {
     try {
       const [infoResult, articlesResult, videosResult] = await Promise.all([
         pool.query('SELECT * FROM ministry_info ORDER BY id DESC LIMIT 1'),
-        pool.query('SELECT * FROM articles ORDER BY created_at DESC LIMIT 3'),
-        pool.query('SELECT * FROM videos4 ORDER BY created_at DESC LIMIT 3'),
+        pool.query('SELECT * FROM articles ORDER BY created_at3 DESC LIMIT 3'),
+        pool.query('SELECT * FROM videos4 ORDER BY created_at3 DESC LIMIT 3'),
       ]);
   
       const info = infoResult.rows[0];
@@ -60,7 +60,8 @@ app.get('/', async (req, res) => {
       console.error(err);
       res.status(500).send('Server Error');
     }
-  });
+});
+  
 
 // Start server
 const PORT = process.env.PORT || 3000;

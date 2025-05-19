@@ -1,17 +1,20 @@
 const pool = require('../models/db');
 
 exports.showArticles = async (req, res) => {
-  const result = await pool.query('SELECT * FROM articles ORDER BY created_at DESC');
+  const result = await pool.query('SELECT * FROM articles ORDER BY created_at3 DESC');
   res.render('admin/articles', { articles: result.rows });
 };
 
 exports.saveArticle = async (req, res) => {
   const { title, content } = req.body;
   const image_url = req.file ? req.file.path : null;
+  const created_at3 = new Date(); // Create timestamp in JS
 
   await pool.query(
-    'INSERT INTO articles (title, content, image_url) VALUES ($1, $2, $3)',
-    [title, content, image_url]
+    // 'INSERT INTO articles (title, content, image_url) VALUES ($1, $2, $3)',
+    // [title, content, image_url]
+    'INSERT INTO articles (title, content, image_url, created_at3) VALUES ($1, $2, $3, $4)',
+    [title, content, image_url, created_at3]
   );
 
   res.redirect('/admin/articles');
@@ -60,7 +63,7 @@ exports.showEditForm = async (req, res) => {
       const infoResult = await pool.query('SELECT * FROM ministry_info ORDER BY id DESC LIMIT 1');
       const info = infoResult.rows[0] || {};
       
-      const articlesResult = await pool.query('SELECT * FROM articles ORDER BY created_at DESC');
+      const articlesResult = await pool.query('SELECT * FROM articles ORDER BY created_at3 DESC');
       const articles = articlesResult.rows;
   
       res.render('admin/articles', { info, articles });

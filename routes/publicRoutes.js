@@ -9,8 +9,8 @@ router.get('/', async (req, res) => {
   try {
     const [infoResult, articlesResult, videosResult] = await Promise.all([
       pool.query('SELECT * FROM ministry_info ORDER BY id DESC LIMIT 1'),
-      pool.query('SELECT * FROM articles ORDER BY created_at DESC LIMIT 3'),
-      pool.query('SELECT * FROM videos4 ORDER BY created_at DESC LIMIT 3'),
+      pool.query('SELECT * FROM articles ORDER BY created_at3 DESC LIMIT 3'),
+      pool.query('SELECT * FROM videos4 ORDER BY created_at3 DESC LIMIT 3'),
     ]);
 
     const info = infoResult.rows[0];
@@ -55,6 +55,17 @@ router.get('/', async (req, res) => {
     console.error('Error fetching homepage data:', err);
     res.status(500).send('Server Error');
   }
+});
+
+router.get('/articles', async (req, res) => {
+  const result = await pool.query('SELECT * FROM articles ORDER BY created_at3 DESC');
+  res.render('allArticles', { articles: result.rows });
+});
+
+router.get('/videos', async (req, res) => {
+  const result = await pool.query('SELECT * FROM videos4 ORDER BY created_at3 DESC');
+  
+  res.render('allVideos', { videos: result.rows });
 });
 
 module.exports = router;
