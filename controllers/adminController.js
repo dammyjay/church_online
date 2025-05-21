@@ -10,12 +10,50 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
   const result = await pool.query('SELECT * FROM users2 WHERE email = $1 AND password = $2', [email, password]);
 
-  if (result.rows.length > 0) {
-    req.session.admin = true;
-    res.redirect('/admin/dashboard');
-  } else {
-    res.render('admin/login', { error: 'Invalid credentials' });
+  // if (result.rows.length > 0) {
+  //   // req.session.admin = true;
+  //   // res.redirect('/admin/dashboard');
+
+  //   const user = result.rows[0];  
+  //   req.session.user = {
+  //     id: user.id,
+  //     email: user.email,
+  //     role: user.role,
+  //   };
+  //   // Check if the user is an admin
+  //   if (user.role === 'admin') {
+  //     return res.redirect('/admin/dashboard');
+  //   } else {
+  //     return res.redirect('/');
+  //   }
+    
+  // } else {
+  //   res.render('admin/login', { error: 'Invalid credentials' });
+  // }
+  
+  if (result.rows.length === 0) {
+    return res.render('admin/login', { error: 'Invalid credentials' });
   }
+  
+  const user = result.rows[0];
+  
+  // Save session
+  req.session.user = {
+    id: user.id,
+    email: user.email,
+    role: user.role,
+  };
+  
+  // Redirect based on role
+  if (user.role === 'admin') {
+    console.log('Admin login successful');
+    return res.redirect('/admin/dashboard');
+  } else {
+    console.log('User login successful');
+    return res.redirect('/');
+  }
+  
+  
 };
 
 // exports.login = async (req, res) => {
@@ -48,11 +86,11 @@ exports.login = async (req, res) => {
 // }
 
 
-exports.dashboard = (req, res) => {
-  // if (!req.session.admin) return res.redirect('/admin/login');
-  if (!req.session.user || req.session.user.role !== 'admin') return res.redirect('/admin/login');
-  res.render('admin/dashboard');
-};
+// exports.dashboard = (req, res) => {
+//   // if (!req.session.admin) return res.redirect('/admin/login');
+//   if (!req.session.user || req.session.user.role !== 'admin') return res.redirect('/admin/login');
+//   // res.render('admin/dashboard');
+// };
 
 exports.logout = (req, res) => {
   req.session.destroy();
@@ -60,7 +98,10 @@ exports.logout = (req, res) => {
 };
 
 exports.dashboard = async (req, res) => {
-  if (!req.session.admin) return res.redirect('/admin/login');
+  // if (!req.session.admin) return res.redirect('/admin/login');
+  if (!req.session.user || req.session.user.role !== 'admin') {
+    return res.redirect('/admin/login');
+    }
 
   try {
     const infoResult = await pool.query('SELECT * FROM ministry_info ORDER BY id DESC LIMIT 1');
