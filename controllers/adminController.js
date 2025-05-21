@@ -1,4 +1,6 @@
 const pool = require('../models/db');
+const bcrypt = require('bcrypt');
+
 
 exports.showLogin = (req, res) => {
   res.render('admin/login', { error: null });
@@ -6,7 +8,7 @@ exports.showLogin = (req, res) => {
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-  const result = await pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password]);
+  const result = await pool.query('SELECT * FROM users2 WHERE email = $1 AND password = $2', [email, password]);
 
   if (result.rows.length > 0) {
     req.session.admin = true;
@@ -16,8 +18,39 @@ exports.login = async (req, res) => {
   }
 };
 
+// exports.login = async (req, res) => {
+//   const { email, password } = req.body;
+//   const result = await pool.query('SELECT * FROM users2 WHERE email = $1', [email]);
+//   // Check if the user exists
+
+//   if (result.rows.length === 0) {
+//     return res.render('admin/login', { error: 'Invalid credentials' });
+//   }
+  
+//   const user = result.rows[0];
+//   const isMatch = await bcrypt.compare(password, user.password);
+//   if (!isMatch) {
+//     return res.render('admin/login', { error: 'Invalid credentials' });
+//   }
+
+//   req.session.user = {
+//     id: user.id,
+//     email: user.email,
+//     role: user.role,
+//   };
+//   // Check if the user is an admin
+//   if (user.role === 'admin') {
+//     return res.redirect('/admin/dashboard');
+//   } else {
+//     return res.redirect('/');
+//   }
+
+// }
+
+
 exports.dashboard = (req, res) => {
-  if (!req.session.admin) return res.redirect('/admin/login');
+  // if (!req.session.admin) return res.redirect('/admin/login');
+  if (!req.session.user || req.session.user.role !== 'admin') return res.redirect('/admin/login');
   res.render('admin/dashboard');
 };
 

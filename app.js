@@ -8,6 +8,8 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 app.set('view cache', false);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -20,6 +22,7 @@ app.use(session({
 
 // Set EJS as view engine
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 // Routes
 // app.get('/', (req, res) => {
@@ -34,6 +37,9 @@ app.use('/admin', adminRoutes);
 
 const videoRoutes = require('./routes/videoRoutes');
 app.use('/admin', videoRoutes);
+
+const userRoutes = require('./routes/userRoutes');
+app.use('/', userRoutes);
 
 // // Example in your routes file
 // router.get('/login', (req, res) => {

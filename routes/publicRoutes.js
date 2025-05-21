@@ -63,9 +63,15 @@ router.get('/articles', async (req, res) => {
 });
 
 router.get('/videos', async (req, res) => {
-  const result = await pool.query('SELECT * FROM videos4 ORDER BY created_at3 DESC');
+  const result = await pool.query('SELECT * FROM videos4 ORDER BY created_at3 DESC'); 
   
   res.render('allVideos', { videos: result.rows });
+});
+
+router.get('/signup', async (req, res) => {
+  // const result = await pool.query('SELECT * FROM videos4 ORDER BY created_at3 DESC'); 
+  
+  res.render('signup', { error: null });
 });
 
 module.exports = router;
