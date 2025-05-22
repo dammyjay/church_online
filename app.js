@@ -6,6 +6,17 @@ const path = require('path');
 require('dotenv').config();
 
 const app = express();
+const layout = require('express-ejs-layouts');
+
+// Set EJS as view engine
+app.set('view engine', 'ejs');
+
+app.set('views', path.join(__dirname, 'views'));
+app.use(layout);
+
+// Set default layout file (optional)
+// app.set('layout', 'partials/adminLayout'); // default layout for all .ejs files unless overridden
+
 
 // Middleware
 app.use(express.json());
@@ -30,9 +41,6 @@ app.use((req, res, next) => {
   next();
   });
 
-// Set EJS as view engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
 
 // Routes
 // app.get('/', (req, res) => {
@@ -41,6 +49,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 const publicRoutes = require('./routes/publicRoutes');
 app.use('/', publicRoutes);
+
 
 const adminRoutes = require('./routes/adminRoutes');
 app.use('/admin', adminRoutes);

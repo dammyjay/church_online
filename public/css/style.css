@@ -50,6 +50,12 @@ h2 {
     opacity: 1;
     /* Optional: Make it faint */
 }
+.search-form,
+.content-wrapper {
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    text-align: right;
+}
 
 /* Container for forms and content */
 form,
@@ -59,12 +65,13 @@ form,
     /* max-width: 600px; */
     width: 100%;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    /* box-shadow: 0 2px 8px rgb(0 0 0 / 0.1); */
     margin-bottom: 30px;
     box-sizing: border-box;
     /* display: block; */
     /* text-align: center; */
 }
+
 
 /* Labels */
 label {
@@ -204,7 +211,7 @@ form button {
     font-size: 1rem;
     margin-top: 25px;
     transition: background-color 0.3s ease;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .video-card {
@@ -439,10 +446,17 @@ nav a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    
 }
 
 nav a:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    background-color: #f5f5f5;
+    color: #4d3b00;
+    transition: ease 0.5s;
 }
 
 /* Section Styling */
@@ -531,6 +545,134 @@ nav a:hover {
     background-color: #a60a0a;
     /* darker gold */
     text-decoration: none;
+}
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    /* allows horizontal scroll if needed */
+    -webkit-overflow-scrolling: touch;
+    /* smooth scrolling on iOS */
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    /* sets minimum width to avoid squishing too much */
+    font-family: sans-serif;
+}
+
+.user-table th {
+    background-color: #333;
+    color: white;
+    text-align: left;
+    padding: 12px;
+}
+
+.user-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table tr:hover {
+    background-color: #f5f5f5;
+}
+.btn-edit {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-edit:hover {
+    background-color: #45a049;
+}
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.btn-delete:hover {
+    background-color: #e53935;
+}
+
+/* Optional: reduce padding on very small screens */
+@media screen and (max-width: 480px) {
+
+    .user-table th,
+    .user-table td {
+        padding: 8px 6px;
+        font-size: 12px;
+    }
+
+    /* Make profile images smaller on mobile */
+    .user-table img {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    .btn-edit {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 2px 4px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+    
+    .btn-edit:hover {
+        background-color: #45a049;
+    }
+    .btn-edit {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 12px;
+    }
+    .btn-edit:hover {
+        background-color: #45a049;
+    }
+    .btn-delete {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 12px;
+    }
+    .btn-delete:hover {
+        background-color: #e53935;
+    }
+
+        nav {
+            /* margin-top: 1rem; */
+            /* width: 30%; */
+        }
+    
+        nav a {
+            /* margin: 0 1rem; */
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+    
+        }
+    
+        nav a:hover {
+            /* text-decoration: underline; */
+            background-color: #f5f5f5;
+            color: #4d3b00;
+            transition: ease 0.5s;   }
 }
 
 /* Responsive Design */

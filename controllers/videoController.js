@@ -1,8 +1,38 @@
 const pool = require('../models/db');
 
-exports.showVideos = async (req, res) => {
-    const result = await pool.query('SELECT * FROM videos4 ORDER BY created_at3 DESC');
-  res.render('admin/videos', { videos: result.rows });
+// exports.showVideos = async (req, res) => {
+//     const result = await pool.query('SELECT * FROM videos4 ORDER BY created_at3 DESC');
+//   res.render('admin/videos', { videos: result.rows });
+// };
+
+exports.showSearchVideos = async (req, res) => {
+  try {
+    // const search = req.query.search;
+    // const infoResult = await pool.query(
+    //   'SELECT * FROM ministry_info ORDER BY id DESC LIMIT 1',
+    // );
+    // const info = infoResult.rows[0] || {};
+    const search = req.query.search || '';
+    let result;
+    // let videosResult;
+if (search) {
+  result = await pool.query(
+    'SELECT * FROM videos4 WHERE LOWER(title) LIKE $1 ORDER BY created_at3 DESC',
+    [`%${search.toLowerCase()}%`]
+  );
+} else {
+  result = await pool.query('SELECT * FROM videos4 ORDER BY created_at3 DESC');
+}
+
+res.render('admin/videos', {
+  videos: result.rows,
+  search // ✅ This allows <%= search %> to work in videos.ejs
+});
+
+  } catch (err) {
+    console.error('Error searching videos:', err);
+    res.status(500).send('Server Error');
+  }
 };
 
 exports.saveVideo = async (req, res) => {

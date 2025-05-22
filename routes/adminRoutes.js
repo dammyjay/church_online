@@ -11,6 +11,9 @@ router.post('/login', adminController.login);
 router.get('/dashboard', adminController.dashboard);
 router.get('/logout', adminController.logout);
 
+router.get('/users/edit/:id', adminController.editUserForm);
+router.post('/users/delete/:id', adminController.deleteUser);
+router.post('/users/edit/:id', adminController.updateUser);
 
 
 // Admin dashboard
@@ -23,7 +26,8 @@ router.get('/ministry', ministryController.showForm);
 // POST form with file upload
 router.post('/ministry', upload.single('logo'), ministryController.saveInfo);
 
-router.get('/articles', articleController.showArticles);
+// router.get('/articles', articleController.showArticles);
+router.get('/articles', articleController.showSearchArticles);
 router.post('/articles', upload.single('image'), articleController.saveArticle);
 
 router.get('/articles/edit/:id', articleController.showEditForm);

@@ -1,8 +1,38 @@
 const pool = require('../models/db');
 
-exports.showArticles = async (req, res) => {
-  const result = await pool.query('SELECT * FROM articles ORDER BY created_at3 DESC');
-  res.render('admin/articles', { articles: result.rows });
+// exports.showArticles = async (req, res) => {
+//   const result = await pool.query('SELECT * FROM articles ORDER BY created_at3 DESC');
+//   res.render('admin/articles', { articles: result.rows });
+// };
+
+exports.showSearchArticles = async (req, res) => {
+  try {
+    const search = req.query.search;
+    const infoResult = await pool.query(
+      'SELECT * FROM ministry_info ORDER BY id DESC LIMIT 1',
+    );
+    const info = infoResult.rows[0] || {};
+    let articlesResult;
+
+    if (search) {
+      articlesResult = await pool.query(
+        'SELECT * FROM articles WHERE LOWER(title) LIKE $1 ORDER BY created_at DESC',
+        [`%${search.toLowerCase()}%`]
+      );
+    } else {
+      articlesResult = await pool.query('SELECT * FROM articles ORDER BY created_at DESC');
+    }
+
+    res.render('admin/articles', {
+      info,
+      articles: articlesResult.rows,
+      search, // Pass back to template for input field value
+    });
+
+  } catch (err) {
+    console.error('Error searching articles:', err);
+    res.status(500).send('Server Error');
+  }
 };
 
 exports.saveArticle = async (req, res) => {
