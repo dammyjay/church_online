@@ -604,6 +604,12 @@ nav a:hover {
 /* Optional: reduce padding on very small screens */
 @media screen and (max-width: 480px) {
 
+    .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            /* allows horizontal scroll if needed */
+            -webkit-overflow-scrolling: touch;
+            /* smooth scrolling on iOS */   }
     .user-table th,
     .user-table td {
         padding: 8px 6px;
@@ -677,6 +683,12 @@ nav a:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            /* allows horizontal scroll if needed */
+            -webkit-overflow-scrolling: touch;
+            /* smooth scrolling on iOS */   }
     .card-container {
         flex-direction: column;
     }
@@ -690,6 +702,12 @@ nav a:hover {
 }
 
 @media (max-width: 600px) {
+    .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            /* allows horizontal scroll if needed */
+            -webkit-overflow-scrolling: touch;
+            /* smooth scrolling on iOS */   }
     .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
