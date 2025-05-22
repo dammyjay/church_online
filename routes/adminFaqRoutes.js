@@ -19,10 +19,11 @@ res.render('admin/editFaq', { faq: result.rows[0] });
 
 // Handle update
 router.post('/admin/faqs/update/:id', async (req, res) => {
-const { answer, is_published } = req.body;
+    const { answer, is_published } = req.body;
+    const created_at = new Date(); // Create timestamp in JS
 await pool.query(
-'UPDATE faqs SET answer = $1, is_published = $2 WHERE id = $3',
-[answer, is_published === 'on', req.params.id]
+'UPDATE faqs SET answer = $1, is_published = $2, created_at = $3 WHERE id = $4',
+[answer, is_published === 'on', created_at, req.params.id]
     );
     
     // Get email of question submitter
