@@ -60,6 +60,15 @@ app.use('/admin', videoRoutes);
 const userRoutes = require('./routes/userRoutes');
 app.use('/', userRoutes);
 
+const subscribeRoutes = require('./routes/subscribeRoutes');
+app.use('/', subscribeRoutes);
+
+const publicFaqRoutes = require('./routes/publicFaqRoutes');
+app.use('/', publicFaqRoutes);
+
+const adminFaqRoutes = require('./routes/adminFaqRoutes');
+app.use('/', adminFaqRoutes);
+
 // // Example in your routes file
 // router.get('/login', (req, res) => {
 //   res.render('admin/login'); // note: include 'admin/' because login.ejs is inside admin folder

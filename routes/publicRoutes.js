@@ -12,9 +12,10 @@ router.get('/', async (req, res) => {
       pool.query('SELECT * FROM articles ORDER BY created_at3 DESC LIMIT 3'),
       pool.query('SELECT * FROM videos4 ORDER BY created_at3 DESC LIMIT 3'),
     ]);
-
+    const faqsResult = await pool.query('SELECT * FROM faqs WHERE is_published = true ORDER BY created_at DESC LIMIT 5');
     const info = infoResult.rows[0];
     const articles = articlesResult.rows;
+    const faqs = faqsResult.rows;
 
     console.log('Raw video URLs:', videosResult.rows.map(v => v.youtube_url));
     const videos = videosResult.rows.map(video => {
@@ -50,7 +51,7 @@ router.get('/', async (req, res) => {
       });
       console.log(videos.map(v => ({ title: v.title, embed_url: v.embed_url })));
 
-    res.render('home', { info, articles, videos });
+    res.render('home', { info, articles, videos, faqs,  subscribed: req.query.subscribed });
   } catch (err) {
     console.error('Error fetching homepage data:', err);
     res.status(500).send('Server Error');
@@ -129,7 +130,8 @@ router.get('/articles', async (req, res) => {
     
     res.render('allArticles', {
       articles: result.rows,
-      search // ⬅️ pass search value to EJS
+      search, // ⬅️ pass search value to EJS
+      subscribed: req.query.subscribed
     });
   } catch (err) {
     console.error('Error fetching public articles:', err);
@@ -159,7 +161,8 @@ router.get('/videos', async (req, res) => {
     
     res.render('allVideos', {
       videos: result.rows,
-      search // ⬅️ pass search value to EJS
+      search, // ⬅️ pass search value to EJS
+      subscribed: req.query.subscribed
     });
   } catch (err) {
     console.error('Error fetching public video  s:', err);
@@ -172,5 +175,16 @@ router.get('/signup', async (req, res) => {
   
   res.render('signup', { error: null });
 });
+
+router.post('/faq/ask', async (req, res) => {
+  const { question, email } = req.body;
+  
+  if (!question || question.trim() === '') {
+  return res.redirect('/faq');
+  }
+  
+  await pool.query('INSERT INTO faqs (question, email) VALUES ($1, $2)', [question, email || null]);
+  res.redirect('/faq');
+  });
 
 module.exports = router;
