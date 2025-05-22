@@ -6,6 +6,22 @@
     <link rel="icon" type="image/x-icon" href="/logo.png" />
   </head>
   <body>
+    <header class="header">
+      <div class="logo-title">
+        <% info = info || {}; %> <% if (info.logo_url) { %>
+        <img src="<%= info.logo_url %>" alt="Logo" />
+        <% } %>
+        <p><%= info?.name || 'C&S Church Online' %></p>
+      </div>
+      <nav>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/articles">Articles</a>
+        <a href="/admin/videos">Videos</a>
+        <a href="/admin/ministry">About</a>
+        <a href="/admin/logout"  class="logout-button">Logout</a> <!-- Login remains a page link -->
+        
+      </nav>
+    </header>
     <form class="search-form" method="GET" action="/admin/videos" style="margin-bottom: 20px">
       <input
         type="text"

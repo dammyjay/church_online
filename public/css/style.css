@@ -311,8 +311,9 @@ form button {
 /* Style for both buttons and links */
 .article-buttons a,
 .article-buttons form button {
-    display: inline-block;
-    background-color: #bfa046;
+    /* display: inline-block; */
+    /* background-color: #bfa046; */
+    background-color: #4CAF50;
     /* gold */
     color: white;
     border: none;
@@ -323,14 +324,15 @@ form button {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-right: 10px;
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
 
 /* Hover effect for buttons and links */
 .article-buttons a:hover,
 .article-buttons form button:hover {
-    background-color: #a38833;
+    /* background-color: #a38833; */
     /* darker gold */
+    background-color: #307732;
 }
 
 /* Delete button specifically */
@@ -349,6 +351,10 @@ form button {
     margin: 0;
     padding: 0;
 }
+.article-body {
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-bottom: 10px;   }
 
 /* Video card styling */
 .video-card {

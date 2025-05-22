@@ -4,6 +4,7 @@
     <title>Manage Articles</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="icon" type="image/x-icon" href="/logo.png" />
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
   </head>
   <body>
     <!-- Header -->
@@ -15,7 +16,7 @@
         <p><%= info?.name || 'C&S Church Online' %></p>
       </div>
       <nav>
-        <a href="/">Home</a>
+        <a href="/admin/dashboard">Dashboard</a>
         <a href="/admin/articles">Articles</a>
         <a href="/admin/videos">Videos</a>
         <a href="/admin/ministry">About</a>
@@ -30,7 +31,7 @@
       <input type="text" name="title" required /><br /><br />
 
       <label>Content:</label><br />
-      <textarea name="content" required></textarea><br /><br />
+      <textarea name="content" id="content" required></textarea><br /><br />
 
       <label>Image (optional):</label><br />
       <input type="file" name="image" /><br /><br />
@@ -54,7 +55,8 @@
       <% if (article.image_url) { %>
       <img src="<%= article.image_url %>" alt="Article Image" />
       <% } %>
-      <p><%= article.content %></p>
+      <!-- <p><%= article.content %></p> -->
+      <div class="article-body"> <%- article.content %> </div>
       <small
         >Posted on <%= new Date(article.created_at3).toLocaleString() %></small
       >
@@ -73,5 +75,6 @@
     <% }) %>
 
     <a href="/admin/dashboard">Back to Dashboard</a>
+    <script> CKEDITOR.replace('content'); </script>
   </body>
 </html>
