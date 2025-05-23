@@ -413,12 +413,8 @@ form button {
 }
 
 /* Header */
-.header {
+/* .header {
     background-color: #4d3b00;
-    /* dark gold/brown */
-    /* background-image: url(banner.jpg);  
-        background-size: auto;
-        background-repeat: no-repeat; */
     color: white;
     padding: 1rem;
     text-align: center;
@@ -428,6 +424,35 @@ form button {
     align-items: center;
     justify-content: space-between;
     position: relative;
+} */
+
+header {
+    
+    background: url('/banner.jpg') center/cover no-repeat;
+    z-index: 1;
+    overflow: hidden;
+    /* background-color: #4d3b00; */
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        width: 100%;
+        margin: 0px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(43, 34, 11, 0.6);
+    /* translucent gold overlay */
+    z-index: -1;
 }
 
 .logo-title {
