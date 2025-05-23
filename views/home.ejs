@@ -55,7 +55,7 @@
       <div class="card-grid">
         <% articles.forEach(article => { %>
         <div class="card">
-          <h3><%= article.title %></h3>
+          <h3><%- article.title %></h3>
           <% if (article.image_url) { %>
           <img
             src="<%= article.image_url %>"
@@ -70,10 +70,10 @@
           <% } %>
           <!-- <p><%= article.content.substring(0, 100) %>...</p> -->
           <div class="article-body">
-            <%= article.content.substring(0, 100) %>..
+            <%- article.content.substring(0, 100) %>..
           </div>
           <!-- <small><%= new Date(article.created_at2).toLocaleDateString() %></small> -->
-          <small><%= new Date(article.created_at3).toLocaleString() %></small>
+          <small><%- new Date(article.created_at3).toLocaleString() %></small>
         </div>
         <% }) %>
       </div>
